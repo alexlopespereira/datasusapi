@@ -1,11 +1,24 @@
 {
+
   "manifest_version": 2,
-  "name": "DDG Position",
-  "version": "1.0",
-  "description": "Places a marker with the position a result in Google appears on duckduckgo for the same search term.",
-  "background":
-  {
-      "scripts": ["background.js"]
+  "name": "DatasusAPI",
+  "version": "1.1",
+
+  "description": "Consulta a API de Vacinação do Ministério da Saúde",
+  "icons": {
+    "48": "icons/ext-48.png"
+  },
+
+  "permissions": [
+    "storage"
+  ],
+
+  "browser_action": {
+    "default_icon": {
+     "32" : "icons/ext-32.png"
+    },
+    "default_title": "Quicknote",
+    "default_popup": "popup/quicknote.html"
   }
 
 }
