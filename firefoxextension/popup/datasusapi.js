@@ -91,6 +91,15 @@ function read_elasticsearch(id_uf, id_municipio, data_inicio, campos_selecionado
     xhr.send(JSON.stringify(options));
 }
 
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+
 function addNote() {
     var mune = document.getElementById("municipiosid");
     var ufe = document.getElementById("ufid");
@@ -102,7 +111,16 @@ function addNote() {
     var camposLista = getSelectValues(campos);
     var inicioLista = getSelectValues(inicio);
 
-    read_elasticsearch(strUF, strMun, inicioLista[0], camposLista)
+//    read_elasticsearch(strUF, strMun, inicioLista[0], camposLista)
+
+    download("code,a,b,c", `Resultado_${strUF}_${strMun}_${inicioLista[0]}.csv`, 'text/plain');
+
+//    var result_div = document.getElementById("resultid");
+//    var a = document.createElement('a');
+//    result_div.appendChild(a)
+//    a.textContent = "Download do Resultado";
+//    a.setAttribute('download', `Resultado_${strUF}_${strMun}_${inicioLista[0]}.csv`);
+//    a.setAttribute('href', 'data:text/csv,' + "code,a,b,c");
 
 //    var xhr = new XMLHttpRequest();
 //    xhr.withCredentials = true;
