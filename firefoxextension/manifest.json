@@ -10,15 +10,14 @@
   },
 
   "permissions": [
-    "storage"
   ],
 
   "browser_action": {
     "default_icon": {
      "32" : "icons/ext-32.png"
     },
-    "default_title": "Quicknote",
-    "default_popup": "popup/quicknote.html"
+    "default_title": "DatasusAPI",
+    "default_popup": "popup/datasusapi.html"
   }
 
 }

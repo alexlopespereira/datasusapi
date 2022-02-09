@@ -3,15 +3,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="quicknote.css"/>
+    <link rel="stylesheet" href="datasusapi.css"/>
   </head>
 
 <body>
   <div class="outer-wrapper">
     <div class="note-container">
-      <form name="form1" id="form1" action="/action_page.php">
-          <label for="inicio">Semana:</label>
-          <select style="margin-bottom:15px" id="inicio">
+      <form name="form1" id="form1">
+          <label for="inicioid">Semana:</label>
+          <select style="margin-bottom:15px" id="inicioid">
             <option value='2021-01-10T00:00:00.000Z'>02/2021</option>
     <option value='2021-01-17T00:00:00.000Z'>03/2021</option>
     <option value='2021-01-24T00:00:00.000Z'>04/2021</option>
@@ -120,18 +120,61 @@
               <option value="" selected="selected">Selecione uma UF</option>
             </select>
             <br><br>
-          Municipios: <select name="municipiosid" id="municipiosid">
+          Municipios: <select name="municipiosid" id="municipiosid" style="margin-bottom:15px" >
               <option value="" selected="selected">Todos</option>
             </select>
+        Campos: <select name="campos" id="camposid" size="5" multiple>
+              <option value='estabelecimento_municipio_nome'>estabelecimento_municipio_nome</option>
+              <option value='data_importacao_rnds'>data_importacao_rnds</option>
+              <option value='vacina_dataAplicacao'>vacina_dataAplicacao</option>
+              <option value='document_id'>document_id</option>
+              <option value='paciente_racaCor_valor'>paciente_racaCor_valor</option>
+              <option value='estabelecimento_razaoSocial'>estabelecimento_razaoSocial</option>
+              <option value='vacina_descricao_dose'>vacina_descricao_dose</option>
+              <option value='dt_deleted'>dt_deleted</option>
+              <option value='paciente_endereco_uf'>paciente_endereco_uf</option>
+              <option value='vacina_codigo'>vacina_codigo</option>
+              <option value='vacina_numDose'>vacina_numDose</option>
+              <option value='estabelecimento_municipio_codigo'>estabelecimento_municipio_codigo</option>
+              <option value='data_importacao_datalake'>data_importacao_datalake</option>
+              <option value='vacina_nome'>vacina_nome</option>
+              <option value='estabelecimento_valor'>estabelecimento_valor</option>
+              <option value='paciente_endereco_nmMunicipio'>paciente_endereco_nmMunicipio</option>
+              <option value='paciente_dataNascimento'>paciente_dataNascimento</option>
+              <option value='paciente_endereco_coIbgeMunicipio'>paciente_endereco_coIbgeMunicipio</option>
+              <option value='vacina_categoria_codigo'>vacina_categoria_codigo</option>
+              <option value='id_sistema_origem'>id_sistema_origem</option>
+              <option value='paciente_idade'>paciente_idade</option>
+              <option value='paciente_nacionalidade_enumNacionalidade'>paciente_nacionalidade_enumNacionalidade</option>
+              <option value='estalecimento_noFantasia'>estalecimento_noFantasia</option>
+              <option value='@timestamp'>@timestamp</option>
+              <option value='estabelecimento_uf'>estabelecimento_uf</option>
+              <option value='vacina_fabricante_nome'>vacina_fabricante_nome</option>
+              <option value='paciente_id'>paciente_id</option>
+              <option value='vacina_fabricante_referencia'>vacina_fabricante_referencia</option>
+              <option value='status'>status</option>
+              <option value='paciente_racaCor_codigo'>paciente_racaCor_codigo</option>
+              <option value='vacina_grupoAtendimento_nome'>vacina_grupoAtendimento_nome</option>
+              <option value='vacina_categoria_nome'>vacina_categoria_nome</option>
+              <option value='paciente_endereco_nmPais'>paciente_endereco_nmPais</option>
+              <option value='vacina_lote'>vacina_lote</option>
+              <option value='paciente_endereco_cep'>paciente_endereco_cep</option>
+              <option value='sistema_origem'>sistema_origem</option>
+              <option value='@version'>@version</option>
+              <option value='vacina_grupoAtendimento_codigo'>vacina_grupoAtendimento_codigo</option>
+              <option value='paciente_endereco_coPais'>paciente_endereco_coPais</option>
+              <option value='paciente_enumSexoBiologico'>paciente_enumSexoBiologico</option>
+            </select>
             <br><br>
-            <button class="add">Atualizar</button>
-          <div class="clearfix"></div>
+
       </form>
+      <button class="add">Atualizar</button>
+          <div class="clearfix"></div>
     </div>
   </div>
 
 
-  <script src="quicknote.js"></script>
+  <script src="datasusapi.js"></script>
 </body>
 
 </html>

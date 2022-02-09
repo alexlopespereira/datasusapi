@@ -52,42 +52,71 @@ function getData(token){
     xhr.send(data);
 }
 
-function read_elasticsearch(id_uf, id_municipio, data_inicio, data_fim, campos_selecionados){
-//  var id_geografico = sheetConfiguracoes.getSheetValues(2, 13, 1, 1)[0][0];
-//  id_geografico = id_geografico.toString().substring(0, 6)
-  var MAXIMUM_RESULTS = 100
-  geo_obj[cmpgeo] = id_geografico
+function getSelectValues(select) {
+  var result = [];
+  var options = select && select.options;
+  var opt;
 
-  var ES_URL_SEARCH = 'https://imunizacao-es.saude.gov.br/_search'
+  for (var i=0, iLen=options.length; i<iLen; i++) {
+    opt = options[i];
 
-  var payload = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": data_fim}}}]}}}
-
-  var options = {"method": "post", "contentType": "application/json", "payload": JSON.stringify(payload), "headers": {"Authorization": "Basic " + Utilities.base64Encode('imunizacao_public:qlto5t&7r_@+#Tlstigi')}};
-
-  var response = UrlFetchApp.fetch(ES_URL_SEARCH, options);
-  var json = response.getContentText();
-  //var hits = JSON.parse(json)["hits"]["hits"];
-  var rdata = JSON.parse(json);
-  var hits = rdata["hits"]["hits"]
+    if (opt.selected) {
+      result.push(opt.value || opt.text);
+    }
+  }
+  return result;
 }
 
-function addNote() {
-//  var topicSel = document.getElementById("municipiosid");
-    var e = document.getElementById("ufid");
-    var strUser = e.options[e.selectedIndex].text;
-    alert(strUser)
+function read_elasticsearch(id_uf, id_municipio, data_inicio, campos_selecionados){
+    var MAXIMUM_RESULTS = 10
+    var ES_URL_SEARCH = 'https://cors.io/?https://imunizacao-es.saude.gov.br/_search'
+    var payload = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}+7d`}}}]}}}
+    var options = {"method": "post", "contentType": "application/json", "payload": payload, "headers": {"Authorization": "Basic " + btoa('imunizacao_public:qlto5t&7r_@+#Tlstigi'), "Content-Type": "application/json;charset=UTF-8"}};
+
     var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+//    xhr.withCredentials = true;
     xhr.addEventListener("readystatechange", function() {
-        console.log(this);
         if(this.readyState === 4) {
-            obj = JSON.parse(this.responseText);
-            getData(obj['access_token'])
+            var obj = JSON.parse(this.responseText);
+            var hits = rdata["hits"]["hits"]
+            alert(JSON.stringify(hits[0]))
         }
         else {
+            alert(this.readyState);
             console.log(this.readyState);
         }
     });
-    xhr.open("GET", "https://ehr-auth-hmg.saude.gov.br/api/token");
-    xhr.send();
+    xhr.open("POST", ES_URL_SEARCH);
+//    alert(JSON.stringify(options))
+    xhr.send(JSON.stringify(options));
+}
+
+function addNote() {
+    var mune = document.getElementById("municipiosid");
+    var ufe = document.getElementById("ufid");
+    var strUF = ufe.options[ufe.selectedIndex].text;
+    var strMun = mune.options[mune.selectedIndex].text;
+
+    var campos = document.getElementById("camposid");
+    var inicio = document.getElementById("inicioid");
+    var camposLista = getSelectValues(campos);
+    var inicioLista = getSelectValues(inicio);
+
+    read_elasticsearch(strUF, strMun, inicioLista[0], camposLista)
+
+//    var xhr = new XMLHttpRequest();
+//    xhr.withCredentials = true;
+//    xhr.addEventListener("readystatechange", function() {
+//        if(this.readyState === 4) {
+//            obj = JSON.parse(this.responseText);
+//            alert(obj['access_token'])
+//            getData(obj['access_token'])
+//        }
+//        else {
+//            console.log(this.readyState);
+//        }
+//    });
+//    xhr.open("GET", "https://ehr-auth-hmg.saude.gov.br/api/token");
+//    xhr.send();
+
 }
