@@ -6,7 +6,7 @@
 
   "description": "Consulta a API de Vacinação do Ministério da Saúde",
   "icons": {
-    "48": "icons/ext-48.png"
+    "48": "icons/icon-48.png"
   },
 
   "permissions": [
@@ -14,7 +14,7 @@
 
   "browser_action": {
     "default_icon": {
-     "32" : "icons/ext-32.png"
+     "32" : "icons/icon-32.png"
     },
     "default_title": "DatasusAPI",
     "default_popup": "popup/datasusapi.html"

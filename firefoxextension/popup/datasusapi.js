@@ -37,19 +37,36 @@ function onError(error) {
 }
 
 /* Add a note to the display, and storage */
-function getData(token){
-    var data = JSON.stringify({"query": {"match": {"paciente_idade": 91}}});
+function getData(token, id_uf, id_municipio, data_inicio, campos_selecionados){
+    var MAXIMUM_RESULTS = 1000
+    var data = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}||+7d`}}}]}}};
+//    alert(JSON.stringify(data));
     var xhr = new XMLHttpRequest();
+//    xhr.withCredentials = true;
     xhr.addEventListener("readystatechange", function() {
       if(this.readyState === 4) {
-        console.log(this.responseText);
-        alert(this.responseText);
-      }
+        var obj1 = JSON.parse(this.responseText);
+        var hits = obj1["data"]["hits"]["hits"]
+        if (hits.length === 0) {
+            document.getElementById('progressid').style.visibility="hidden";
+            alert("Sua pesquisa não retornou nenhum registro para o período selecionado.")
+            return
+        }
+        const replacer = (key, value) => value === null ? '' : value
+        const header = Object.keys(hits[0]["_source"])
+        let csv = hits.map(row => header.map(fieldName =>
+        JSON.stringify(row["_source"][fieldName], replacer)).join(','))
+        csv.unshift(header.join(','))
+        csv = csv.join('\r\n')
+        document.getElementById('progressid').style.visibility="hidden";
+        download(csv, `Resultado_${id_uf}_${id_municipio}_${data_inicio}.csv`, 'text/plain');
+        }
     });
-    xhr.open("GET", "https://servicos-es.hmg.saude.gov.br/e-SUSVE/imunizacao-covid-df/_search?pretty");
+    xhr.open("POST", "https://servicos-es.hmg.saude.gov.br/e-SUSVE/capitais-imunizacao-covid-df-brasilia/_search");
     xhr.setRequestHeader("Authorization", token);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(data);
+    document.getElementById('progressid').style.visibility="visible";
+    xhr.send(JSON.stringify(data));
 }
 
 function getSelectValues(select) {
@@ -67,6 +84,7 @@ function getSelectValues(select) {
   return result;
 }
 
+
 function read_elasticsearch(id_uf, id_municipio, data_inicio, campos_selecionados){
     var MAXIMUM_RESULTS = 10
     var ES_URL_SEARCH = 'https://cors.io/?https://imunizacao-es.saude.gov.br/_search'
@@ -82,14 +100,13 @@ function read_elasticsearch(id_uf, id_municipio, data_inicio, campos_selecionado
             alert(JSON.stringify(hits[0]))
         }
         else {
-            alert(this.readyState);
             console.log(this.readyState);
         }
     });
     xhr.open("POST", ES_URL_SEARCH);
-//    alert(JSON.stringify(options))
     xhr.send(JSON.stringify(options));
 }
+
 
 function download(content, fileName, contentType) {
     var a = document.createElement("a");
@@ -113,28 +130,17 @@ function addNote() {
 
 //    read_elasticsearch(strUF, strMun, inicioLista[0], camposLista)
 
-    download("code,a,b,c", `Resultado_${strUF}_${strMun}_${inicioLista[0]}.csv`, 'text/plain');
-
-//    var result_div = document.getElementById("resultid");
-//    var a = document.createElement('a');
-//    result_div.appendChild(a)
-//    a.textContent = "Download do Resultado";
-//    a.setAttribute('download', `Resultado_${strUF}_${strMun}_${inicioLista[0]}.csv`);
-//    a.setAttribute('href', 'data:text/csv,' + "code,a,b,c");
-
-//    var xhr = new XMLHttpRequest();
-//    xhr.withCredentials = true;
-//    xhr.addEventListener("readystatechange", function() {
-//        if(this.readyState === 4) {
-//            obj = JSON.parse(this.responseText);
-//            alert(obj['access_token'])
-//            getData(obj['access_token'])
-//        }
-//        else {
-//            console.log(this.readyState);
-//        }
-//    });
-//    xhr.open("GET", "https://ehr-auth-hmg.saude.gov.br/api/token");
-//    xhr.send();
-
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4) {
+            obj = JSON.parse(this.responseText);
+            getData(obj['access_token'], strUF, strMun, inicioLista[0], camposLista)
+        }
+        else {
+            console.log(this.readyState);
+        }
+    });
+    xhr.open("GET", "https://ehr-auth-hmg.saude.gov.br/api/token");
+    xhr.send();
 }
