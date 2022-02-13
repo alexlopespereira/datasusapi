@@ -39,8 +39,8 @@ function onError(error) {
 
 /* Add a note to the display, and storage */
 function getData(token, id_uf, id_municipio, data_inicio, campos_selecionados){
-    var MAXIMUM_RESULTS = 1000 //"_source": campos_selecionados,
-    var data = {"size": MAXIMUM_RESULTS,  "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}||+7d`}}}]}}};
+    var MAXIMUM_RESULTS = 1000
+    var data = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}||+7d`}}}]}}};
 //    alert(JSON.stringify(data));
     var xhr = new XMLHttpRequest();
 //    xhr.withCredentials = true;
