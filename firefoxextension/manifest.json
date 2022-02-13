@@ -17,6 +17,15 @@
     },
     "default_title": "DatasusAPI",
     "default_popup": "popup/datasusapi.html"
+  },
+
+  "browser_specific_settings": {
+  "gecko": {
+    "id": "datasus@saude.gov.br",
+    "strict_min_version": "42.0",
+    "update_url": "https://example.com/updates.json"
   }
+}
+
 
 }
