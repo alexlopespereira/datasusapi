@@ -24,13 +24,11 @@ window.addEventListener("load", function(){
   load_options()
 });
 
-var noteContainer = document.querySelector('.note-container');
-
-var addBtn = document.querySelector('.add');
+var downloadBtn = document.querySelector('.download');
 
 /*  add event listeners to buttons */
 
-addBtn.addEventListener('click', addNote);
+downloadBtn.addEventListener('click', searchElasticsearch);
 
 /* generic error handler */
 function onError(error) {
@@ -41,9 +39,7 @@ function onError(error) {
 function getData(token, id_uf, id_municipio, data_inicio, campos_selecionados){
     var MAXIMUM_RESULTS = 1000
     var data = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}||+7d`}}}]}}};
-//    alert(JSON.stringify(data));
     var xhr = new XMLHttpRequest();
-//    xhr.withCredentials = true;
     xhr.addEventListener("readystatechange", function() {
       if(this.readyState === 4) {
         var obj1 = JSON.parse(this.responseText);
@@ -85,30 +81,6 @@ function getSelectValues(select) {
   return result;
 }
 
-
-function read_elasticsearch(id_uf, id_municipio, data_inicio, campos_selecionados){
-    var MAXIMUM_RESULTS = 10
-    var ES_URL_SEARCH = 'https://cors.io/?https://imunizacao-es.saude.gov.br/_search'
-    var payload = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}+7d`}}}]}}}
-    var options = {"method": "post", "contentType": "application/json", "payload": payload, "headers": {"Authorization": "Basic " + btoa('imunizacao_public:qlto5t&7r_@+#Tlstigi'), "Content-Type": "application/json;charset=UTF-8"}};
-
-    var xhr = new XMLHttpRequest();
-//    xhr.withCredentials = true;
-    xhr.addEventListener("readystatechange", function() {
-        if(this.readyState === 4) {
-            var obj = JSON.parse(this.responseText);
-            var hits = rdata["hits"]["hits"]
-            alert(JSON.stringify(hits[0]))
-        }
-        else {
-            console.log(this.readyState);
-        }
-    });
-    xhr.open("POST", ES_URL_SEARCH);
-    xhr.send(JSON.stringify(options));
-}
-
-
 function download(content, fileName, contentType) {
     var a = document.createElement("a");
     var file = new Blob([content], {type: contentType});
@@ -117,8 +89,7 @@ function download(content, fileName, contentType) {
     a.click();
 }
 
-
-function addNote() {
+function searchElasticsearch() {
     var mune = document.getElementById("municipiosid");
     var ufe = document.getElementById("ufid");
     var strUF = ufe.options[ufe.selectedIndex].text;
@@ -128,8 +99,6 @@ function addNote() {
     var inicio = document.getElementById("inicioid");
     var camposLista = getSelectValues(campos);
     var inicioLista = getSelectValues(inicio);
-
-//    read_elasticsearch(strUF, strMun, inicioLista[0], camposLista)
 
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
