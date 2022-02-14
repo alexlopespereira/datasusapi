@@ -5,6 +5,10 @@
         {
           "version": "0.1",
           "update_link": "https://addons.mozilla.org/firefox/downloads/file/3908569/datasusapi-0.1-fx.xpi"
+        },
+        {
+          "version": "0.2",
+          "update_link": "https://addons.mozilla.org/firefox/downloads/file/3908834/datasusapi-0.2-fx.xpi"
         }
       ]
     }
