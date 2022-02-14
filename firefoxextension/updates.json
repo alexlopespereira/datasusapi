@@ -1,0 +1,12 @@
+{
+  "addons": {
+    "{abcd1234-1abc-1234-12ab-abcdef123456}": {
+      "updates": [
+        {
+          "version": "0.1",
+          "update_link": "https://addons.mozilla.org/firefox/downloads/file/3908569/datasusapi-0.1-fx.xpi"
+        }
+      ]
+    }
+  }
+}

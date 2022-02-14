@@ -41,8 +41,16 @@ function getData(token, id_uf, id_municipio, data_inicio, campos_selecionados){
     var data = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}||+7d`}}}]}}};
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
+
       if(this.readyState === 4) {
         var obj1 = JSON.parse(this.responseText);
+        if (obj1["error"] == true){
+            document.getElementById('progressid').style.visibility="hidden";
+            if (obj1["message"].includes('JWT'))
+                alert("Você precisa adicionar um certificado válido e autorizado ao seu navegador.")
+            else
+                alert("Não foi possível realizar sua pesquisa.")
+        }
         var hits = obj1["data"]["hits"]["hits"]
         if (hits.length === 0) {
             document.getElementById('progressid').style.visibility="hidden";
@@ -62,8 +70,9 @@ function getData(token, id_uf, id_municipio, data_inicio, campos_selecionados){
     xhr.open("POST", "https://servicos-es.hmg.saude.gov.br/e-SUSVE/capitais-imunizacao-covid-df-brasilia/_search");
     xhr.setRequestHeader("Authorization", token);
     xhr.setRequestHeader("Content-Type", "application/json");
-    document.getElementById('progressid').style.visibility="visible";
     xhr.send(JSON.stringify(data));
+    document.getElementById('progressid').style.visibility="visible";
+
 }
 
 function getSelectValues(select) {

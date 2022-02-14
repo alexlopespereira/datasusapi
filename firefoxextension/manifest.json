@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "DatasusAPI",
-  "version": "0.1",
+  "version": "0.2",
 
   "description": "Consulta a API de Vacinação do Ministério da Saúde",
   "icons": {
@@ -23,7 +23,7 @@
   "gecko": {
     "id": "datasus@saude.gov.br",
     "strict_min_version": "57.0",
-    "update_url": "https://raw.githubusercontent.com/alexlopespereira/datasusapi/main/firefoxextension/manifest.json"
+    "update_url": "https://raw.githubusercontent.com/alexlopespereira/datasusapi/main/firefoxextension/updates.json"
   }
 }
 
