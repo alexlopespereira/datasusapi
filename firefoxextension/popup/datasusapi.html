@@ -1,190 +1,187 @@
 <!--Extension based on the source code available at https://github.com/mdn/webextensions-examples/tree/master/beastify -->
 <!DOCTYPE html>
-
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="datasusapi.css"/>
-  </head>
-
+</head>
 <body>
-      <h2 class="center">Dados de Vacinação</h2>
-      <form name="form1" id="form1">
+<h2 class="center">Dados de Vacinação</h2>
+<form name="form1" id="form1">
+    <label for="inicioid">Semana:</label>
+    <select style="margin-bottom:15px" id="inicioid">
+        <option value='2021-01-10'>02/2021</option>
+        <option value='2021-01-17'>03/2021</option>
+        <option value='2021-01-24'>04/2021</option>
+        <option value='2021-01-31'>05/2021</option>
+        <option value='2021-02-07'>06/2021</option>
+        <option value='2021-02-14'>07/2021</option>
+        <option value='2021-02-21'>08/2021</option>
+        <option value='2021-02-28'>09/2021</option>
+        <option value='2021-03-07'>10/2021</option>
+        <option value='2021-03-14'>11/2021</option>
+        <option value='2021-03-21'>12/2021</option>
+        <option value='2021-03-28'>13/2021</option>
+        <option value='2021-04-04'>14/2021</option>
+        <option value='2021-04-11'>15/2021</option>
+        <option value='2021-04-18'>16/2021</option>
+        <option value='2021-04-25'>17/2021</option>
+        <option value='2021-05-02'>18/2021</option>
+        <option value='2021-05-09'>19/2021</option>
+        <option value='2021-05-16'>20/2021</option>
+        <option value='2021-05-23'>21/2021</option>
+        <option value='2021-05-30'>22/2021</option>
+        <option value='2021-06-06'>23/2021</option>
+        <option value='2021-06-13'>24/2021</option>
+        <option value='2021-06-20'>25/2021</option>
+        <option value='2021-06-27'>26/2021</option>
+        <option value='2021-07-04'>27/2021</option>
+        <option value='2021-07-11'>28/2021</option>
+        <option value='2021-07-18'>29/2021</option>
+        <option value='2021-07-25'>30/2021</option>
+        <option value='2021-08-01'>31/2021</option>
+        <option value='2021-08-08'>32/2021</option>
+        <option value='2021-08-15'>33/2021</option>
+        <option value='2021-08-22'>34/2021</option>
+        <option value='2021-08-29'>35/2021</option>
+        <option value='2021-09-05'>36/2021</option>
+        <option value='2021-09-12'>37/2021</option>
+        <option value='2021-09-19'>38/2021</option>
+        <option value='2021-09-26'>39/2021</option>
+        <option value='2021-10-03'>40/2021</option>
+        <option value='2021-10-10'>41/2021</option>
+        <option value='2021-10-17'>42/2021</option>
+        <option value='2021-10-24'>43/2021</option>
+        <option value='2021-10-31'>44/2021</option>
+        <option value='2021-11-07'>45/2021</option>
+        <option value='2021-11-14'>46/2021</option>
+        <option value='2021-11-21'>47/2021</option>
+        <option value='2021-11-28'>48/2021</option>
+        <option value='2021-12-05'>49/2021</option>
+        <option value='2021-12-12'>50/2021</option>
+        <option value='2021-12-19'>51/2021</option>
+        <option value='2021-12-26'>52/2021</option>
+        <option value='2022-01-02'>01/2022</option>
+        <option value='2022-01-09'>02/2022</option>
+        <option value='2022-01-16'>03/2022</option>
+        <option value='2022-01-23'>04/2022</option>
+        <option value='2022-01-30'>05/2022</option>
+        <option value='2022-02-06'>06/2022</option>
+        <option value='2022-02-13'>07/2022</option>
+        <option value='2022-02-20'>08/2022</option>
+        <option value='2022-02-27'>09/2022</option>
+        <option value='2022-03-06'>10/2022</option>
+        <option value='2022-03-13'>11/2022</option>
+        <option value='2022-03-20'>12/2022</option>
+        <option value='2022-03-27'>13/2022</option>
+        <option value='2022-04-03'>14/2022</option>
+        <option value='2022-04-10'>15/2022</option>
+        <option value='2022-04-17'>16/2022</option>
+        <option value='2022-04-24'>17/2022</option>
+        <option value='2022-05-01'>18/2022</option>
+        <option value='2022-05-08'>19/2022</option>
+        <option value='2022-05-15'>20/2022</option>
+        <option value='2022-05-22'>21/2022</option>
+        <option value='2022-05-29'>22/2022</option>
+        <option value='2022-06-05'>23/2022</option>
+        <option value='2022-06-12'>24/2022</option>
+        <option value='2022-06-19'>25/2022</option>
+        <option value='2022-06-26'>26/2022</option>
+        <option value='2022-07-03'>27/2022</option>
+        <option value='2022-07-10'>28/2022</option>
+        <option value='2022-07-17'>29/2022</option>
+        <option value='2022-07-24'>30/2022</option>
+        <option value='2022-07-31'>31/2022</option>
+        <option value='2022-08-07'>32/2022</option>
+        <option value='2022-08-14'>33/2022</option>
+        <option value='2022-08-21'>34/2022</option>
+        <option value='2022-08-28'>35/2022</option>
+        <option value='2022-09-04'>36/2022</option>
+        <option value='2022-09-11'>37/2022</option>
+        <option value='2022-09-18'>38/2022</option>
+        <option value='2022-09-25'>39/2022</option>
+        <option value='2022-10-02'>40/2022</option>
+        <option value='2022-10-09'>41/2022</option>
+        <option value='2022-10-16'>42/2022</option>
+        <option value='2022-10-23'>43/2022</option>
+        <option value='2022-10-30'>44/2022</option>
+        <option value='2022-11-06'>45/2022</option>
+        <option value='2022-11-13'>46/2022</option>
+        <option value='2022-11-20'>47/2022</option>
+        <option value='2022-11-27'>48/2022</option>
+        <option value='2022-12-04'>49/2022</option>
+        <option value='2022-12-11'>50/2022</option>
+        <option value='2022-12-18'>51/2022</option>
+        <option value='2022-12-25'>52/2022</option>
+    </select><br>
+    UF: <select name="ufid" id="ufid">
+    <option value="" selected="selected">Selecione uma UF</option>
+</select>
+    <br><br>
+    Municipios: <select name="municipiosid" id="municipiosid" style="margin-bottom:15px">
+    <option value="" selected="selected">Todos</option>
+</select>
+    <br>
+    Campos: <select name="campos" id="camposid" size="5" multiple>
+    <option value='@timestamp'>@timestamp</option>
+    <option value='@version'>@version</option>
+    <option value='data_importacao_datalake'>data_importacao_datalake</option>
+    <option value='data_importacao_rnds'>data_importacao_rnds</option>
+    <option value='document_id'>document_id</option>
+    <option value='dt_deleted'>dt_deleted</option>
+    <option value='estabelecimento_municipio_codigo'>estabelecimento_municipio_codigo</option>
+    <option value='estabelecimento_municipio_nome'>estabelecimento_municipio_nome</option>
+    <option value='estabelecimento_razaoSocial'>estabelecimento_razaoSocial</option>
+    <option value='estabelecimento_uf'>estabelecimento_uf</option>
+    <option value='estabelecimento_valor'>estabelecimento_valor</option>
+    <option value='estalecimento_noFantasia'>estalecimento_noFantasia</option>
+    <option value='id_sistema_origem'>id_sistema_origem</option>
+    <option value='paciente_cns'>paciente_cns</option>
+    <option value='paciente_cpf'>paciente_cpf</option>
+    <option value='paciente_dataNascimento'>paciente_dataNascimento</option>
+    <option value='paciente_email'>paciente_email</option>
+    <option value='paciente_endereco_bairro'>paciente_endereco_bairro</option>
+    <option value='paciente_endereco_cep'>paciente_endereco_cep</option>
+    <option value='paciente_endereco_coIbgeMunicipio'>paciente_endereco_coIbgeMunicipio</option>
+    <option value='paciente_endereco_coPais'>paciente_endereco_coPais</option>
+    <option value='paciente_endereco_nmMunicipio'>paciente_endereco_nmMunicipio</option>
+    <option value='paciente_endereco_nmPais'>paciente_endereco_nmPais</option>
+    <option value='paciente_endereco_uf'>paciente_endereco_uf</option>
+    <option value='paciente_enumSexoBiologico'>paciente_enumSexoBiologico</option>
+    <option value='paciente_id'>paciente_id</option>
+    <option value='paciente_idade'>paciente_idade</option>
+    <option value='paciente_nacionalidade_enumNacionalidade'>paciente_nacionalidade_enumNacionalidade</option>
+    <option value='paciente_nome'>paciente_nome</option>
+    <option value='paciente_nome_mae'>paciente_nome_mae</option>
+    <option value='paciente_racaCor_codigo'>paciente_racaCor_codigo</option>
+    <option value='paciente_racaCor_valor'>paciente_racaCor_valor</option>
+    <option value='paciente_telefone'>paciente_telefone</option>
+    <option value='sistema_origem'>sistema_origem</option>
+    <option value='status'>status</option>
+    <option value='vacina_categoria_codigo'>vacina_categoria_codigo</option>
+    <option value='vacina_categoria_nome'>vacina_categoria_nome</option>
+    <option value='vacina_codigo'>vacina_codigo</option>
+    <option value='vacina_dataAplicacao'>vacina_dataAplicacao</option>
+    <option value='vacina_descricao_dose'>vacina_descricao_dose</option>
+    <option value='vacina_fabricante_nome'>vacina_fabricante_nome</option>
+    <option value='vacina_fabricante_referencia'>vacina_fabricante_referencia</option>
+    <option value='vacina_grupoAtendimento_codigo'>vacina_grupoAtendimento_codigo</option>
+    <option value='vacina_grupoAtendimento_nome'>vacina_grupoAtendimento_nome</option>
+    <option value='vacina_lote'>vacina_lote</option>
+    <option value='vacina_nome'>vacina_nome</option>
+    <option value='vacina_numDose'>vacina_numDose</option>
+    <option value='vacina_profissionalAplicador'>vacina_profissionalAplicador</option>
+    <option value='vacina_profissionalAplicador_nome'>vacina_profissionalAplicador_nome</option>
+</select>
+    <br><br>
+</form>
+<button class="download">Download</button>
+<div id="progressid" style="visibility:hidden" class="container">
+    <img src="../icons/progress.gif" width="32" height="32">
+    Carregando...
+</div>
 
-          <label for="inicioid">Semana:</label>
-          <select style="margin-bottom:15px" id="inicioid">
-            <option value='2021-01-10'>02/2021</option>
-    <option value='2021-01-17'>03/2021</option>
-    <option value='2021-01-24'>04/2021</option>
-    <option value='2021-01-31'>05/2021</option>
-    <option value='2021-02-07'>06/2021</option>
-    <option value='2021-02-14'>07/2021</option>
-    <option value='2021-02-21'>08/2021</option>
-    <option value='2021-02-28'>09/2021</option>
-    <option value='2021-03-07'>10/2021</option>
-    <option value='2021-03-14'>11/2021</option>
-    <option value='2021-03-21'>12/2021</option>
-    <option value='2021-03-28'>13/2021</option>
-    <option value='2021-04-04'>14/2021</option>
-    <option value='2021-04-11'>15/2021</option>
-    <option value='2021-04-18'>16/2021</option>
-    <option value='2021-04-25'>17/2021</option>
-    <option value='2021-05-02'>18/2021</option>
-    <option value='2021-05-09'>19/2021</option>
-    <option value='2021-05-16'>20/2021</option>
-    <option value='2021-05-23'>21/2021</option>
-    <option value='2021-05-30'>22/2021</option>
-    <option value='2021-06-06'>23/2021</option>
-    <option value='2021-06-13'>24/2021</option>
-    <option value='2021-06-20'>25/2021</option>
-    <option value='2021-06-27'>26/2021</option>
-    <option value='2021-07-04'>27/2021</option>
-    <option value='2021-07-11'>28/2021</option>
-    <option value='2021-07-18'>29/2021</option>
-    <option value='2021-07-25'>30/2021</option>
-    <option value='2021-08-01'>31/2021</option>
-    <option value='2021-08-08'>32/2021</option>
-    <option value='2021-08-15'>33/2021</option>
-    <option value='2021-08-22'>34/2021</option>
-    <option value='2021-08-29'>35/2021</option>
-    <option value='2021-09-05'>36/2021</option>
-    <option value='2021-09-12'>37/2021</option>
-    <option value='2021-09-19'>38/2021</option>
-    <option value='2021-09-26'>39/2021</option>
-    <option value='2021-10-03'>40/2021</option>
-    <option value='2021-10-10'>41/2021</option>
-    <option value='2021-10-17'>42/2021</option>
-    <option value='2021-10-24'>43/2021</option>
-    <option value='2021-10-31'>44/2021</option>
-    <option value='2021-11-07'>45/2021</option>
-    <option value='2021-11-14'>46/2021</option>
-    <option value='2021-11-21'>47/2021</option>
-    <option value='2021-11-28'>48/2021</option>
-    <option value='2021-12-05'>49/2021</option>
-    <option value='2021-12-12'>50/2021</option>
-    <option value='2021-12-19'>51/2021</option>
-    <option value='2021-12-26'>52/2021</option>
-    <option value='2022-01-02'>01/2022</option>
-    <option value='2022-01-09'>02/2022</option>
-    <option value='2022-01-16'>03/2022</option>
-    <option value='2022-01-23'>04/2022</option>
-    <option value='2022-01-30'>05/2022</option>
-    <option value='2022-02-06'>06/2022</option>
-    <option value='2022-02-13'>07/2022</option>
-    <option value='2022-02-20'>08/2022</option>
-    <option value='2022-02-27'>09/2022</option>
-    <option value='2022-03-06'>10/2022</option>
-    <option value='2022-03-13'>11/2022</option>
-    <option value='2022-03-20'>12/2022</option>
-    <option value='2022-03-27'>13/2022</option>
-    <option value='2022-04-03'>14/2022</option>
-    <option value='2022-04-10'>15/2022</option>
-    <option value='2022-04-17'>16/2022</option>
-    <option value='2022-04-24'>17/2022</option>
-    <option value='2022-05-01'>18/2022</option>
-    <option value='2022-05-08'>19/2022</option>
-    <option value='2022-05-15'>20/2022</option>
-    <option value='2022-05-22'>21/2022</option>
-    <option value='2022-05-29'>22/2022</option>
-    <option value='2022-06-05'>23/2022</option>
-    <option value='2022-06-12'>24/2022</option>
-    <option value='2022-06-19'>25/2022</option>
-    <option value='2022-06-26'>26/2022</option>
-    <option value='2022-07-03'>27/2022</option>
-    <option value='2022-07-10'>28/2022</option>
-    <option value='2022-07-17'>29/2022</option>
-    <option value='2022-07-24'>30/2022</option>
-    <option value='2022-07-31'>31/2022</option>
-    <option value='2022-08-07'>32/2022</option>
-    <option value='2022-08-14'>33/2022</option>
-    <option value='2022-08-21'>34/2022</option>
-    <option value='2022-08-28'>35/2022</option>
-    <option value='2022-09-04'>36/2022</option>
-    <option value='2022-09-11'>37/2022</option>
-    <option value='2022-09-18'>38/2022</option>
-    <option value='2022-09-25'>39/2022</option>
-    <option value='2022-10-02'>40/2022</option>
-    <option value='2022-10-09'>41/2022</option>
-    <option value='2022-10-16'>42/2022</option>
-    <option value='2022-10-23'>43/2022</option>
-    <option value='2022-10-30'>44/2022</option>
-    <option value='2022-11-06'>45/2022</option>
-    <option value='2022-11-13'>46/2022</option>
-    <option value='2022-11-20'>47/2022</option>
-    <option value='2022-11-27'>48/2022</option>
-    <option value='2022-12-04'>49/2022</option>
-    <option value='2022-12-11'>50/2022</option>
-    <option value='2022-12-18'>51/2022</option>
-    <option value='2022-12-25'>52/2022</option>
-          </select><br>
-          UF: <select name="ufid" id="ufid">
-              <option value="" selected="selected">Selecione uma UF</option>
-            </select>
-            <br><br>
-          Municipios: <select name="municipiosid" id="municipiosid" style="margin-bottom:15px" >
-              <option value="" selected="selected">Todos</option>
-            </select>
-          <br>
-        Campos: <select name="campos" id="camposid" size="5" multiple>
-                <option value='@timestamp'>@timestamp</option>
-                <option value='@version'>@version</option>
-                <option value='data_importacao_datalake'>data_importacao_datalake</option>
-                <option value='data_importacao_rnds'>data_importacao_rnds</option>
-                <option value='document_id'>document_id</option>
-                <option value='dt_deleted'>dt_deleted</option>
-                <option value='estabelecimento_municipio_codigo'>estabelecimento_municipio_codigo</option>
-                <option value='estabelecimento_municipio_nome'>estabelecimento_municipio_nome</option>
-                <option value='estabelecimento_razaoSocial'>estabelecimento_razaoSocial</option>
-                <option value='estabelecimento_uf'>estabelecimento_uf</option>
-                <option value='estabelecimento_valor'>estabelecimento_valor</option>
-                <option value='estalecimento_noFantasia'>estalecimento_noFantasia</option>
-                <option value='id_sistema_origem'>id_sistema_origem</option>
-                <option value='paciente_cns'>paciente_cns</option>
-                <option value='paciente_cpf'>paciente_cpf</option>
-                <option value='paciente_dataNascimento'>paciente_dataNascimento</option>
-                <option value='paciente_email'>paciente_email</option>
-                <option value='paciente_endereco_bairro'>paciente_endereco_bairro</option>
-                <option value='paciente_endereco_cep'>paciente_endereco_cep</option>
-                <option value='paciente_endereco_coIbgeMunicipio'>paciente_endereco_coIbgeMunicipio</option>
-                <option value='paciente_endereco_coPais'>paciente_endereco_coPais</option>
-                <option value='paciente_endereco_nmMunicipio'>paciente_endereco_nmMunicipio</option>
-                <option value='paciente_endereco_nmPais'>paciente_endereco_nmPais</option>
-                <option value='paciente_endereco_uf'>paciente_endereco_uf</option>
-                <option value='paciente_enumSexoBiologico'>paciente_enumSexoBiologico</option>
-                <option value='paciente_id'>paciente_id</option>
-                <option value='paciente_idade'>paciente_idade</option>
-                <option value='paciente_nacionalidade_enumNacionalidade'>paciente_nacionalidade_enumNacionalidade</option>
-                <option value='paciente_nome'>paciente_nome</option>
-                <option value='paciente_nome_mae'>paciente_nome_mae</option>
-                <option value='paciente_racaCor_codigo'>paciente_racaCor_codigo</option>
-                <option value='paciente_racaCor_valor'>paciente_racaCor_valor</option>
-                <option value='paciente_telefone'>paciente_telefone</option>
-                <option value='sistema_origem'>sistema_origem</option>
-                <option value='status'>status</option>
-                <option value='vacina_categoria_codigo'>vacina_categoria_codigo</option>
-                <option value='vacina_categoria_nome'>vacina_categoria_nome</option>
-                <option value='vacina_codigo'>vacina_codigo</option>
-                <option value='vacina_dataAplicacao'>vacina_dataAplicacao</option>
-                <option value='vacina_descricao_dose'>vacina_descricao_dose</option>
-                <option value='vacina_fabricante_nome'>vacina_fabricante_nome</option>
-                <option value='vacina_fabricante_referencia'>vacina_fabricante_referencia</option>
-                <option value='vacina_grupoAtendimento_codigo'>vacina_grupoAtendimento_codigo</option>
-                <option value='vacina_grupoAtendimento_nome'>vacina_grupoAtendimento_nome</option>
-                <option value='vacina_lote'>vacina_lote</option>
-                <option value='vacina_nome'>vacina_nome</option>
-                <option value='vacina_numDose'>vacina_numDose</option>
-                <option value='vacina_profissionalAplicador'>vacina_profissionalAplicador</option>
-                <option value='vacina_profissionalAplicador_nome'>vacina_profissionalAplicador_nome</option>
-            </select>
-            <br><br>
-      </form>
-      <button class="download">Download</button>
-      <div id="progressid" style="visibility:hidden" class="container">
-          <img src="../icons/progress.gif" width="32" height="32">
-          Carregando...
-      </div>
-
-  <script src="datasusapi.js"></script>
+<script src="datasusapi.js"></script>
 </body>
 
 </html>
