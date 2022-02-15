@@ -47,9 +47,9 @@ function getData(token, id_uf, id_municipio, data_inicio, campos_selecionados){
         if (obj1["error"] == true){
             document.getElementById('progressid').style.visibility="hidden";
             if (obj1["message"].includes('JWT'))
-                alert("Você precisa adicionar um certificado válido e autorizado ao seu navegador.")
+                alert("Você precisa adicionar um certificado válido e autorizado ao seu navegador. Use a função Opções -> Privacidade e Segurança -> Ver certificados")
             else
-                alert("Não foi possível realizar sua pesquisa. Confira se você adicionou um certificado autorizado ao seu navegador.")
+                alert("Não foi possível realizar sua pesquisa. Confira se você adicionou um certificado autorizado ao seu navegador. Use a função Opções -> Privacidade e Segurança -> Ver certificados")
         }
         var hits = obj1["data"]["hits"]["hits"]
         if (hits.length === 0) {
