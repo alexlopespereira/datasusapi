@@ -43,6 +43,17 @@ function isCapital(text){
   return capitais.includes(ast[0])
 }
 
+String.prototype.slugify = function (separator = "-") {
+    return this
+        .toString()
+        .normalize('NFD')                   // split an accented letter in the base letter and the acent
+        .replace(/[\u0300-\u036f]/g, '')   // remove all previously split accents
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9 ]/g, '')   // remove all chars not letters, numbers and spaces (to be replaced)
+        .replace(/\s+/g, separator);
+};
+
 function getIndexName(uf, municipio){
     var map_uf = {
         'Rondônia': 'ro', 'Acre': 'ac', 'Amazonas': 'am', 'Roraima': 'rr', 'Pará': 'pa', 'Amapá': 'ap',
@@ -62,30 +73,14 @@ function getIndexName(uf, municipio){
         return `imunizacao-covid-${map_uf[uf]}`
     }
     else if (isCapital(municipio)){
-        return `capitais-imunizacao-covid-${map_uf[uf]}-${slugify(municipio.split(" - ")[1])}`
+        return `capitais-imunizacao-covid-${map_uf[uf]}-${municipio.split(" - ")[1].slugify()}`
     }
     else{
-        return `imunizacao-covid-${map_uf[uf]}-${slugify(municipio.split(" - ")[1])}`
+        return `imunizacao-covid-${map_uf[uf]}-${municipio.split(" - ")[1].slugify()}`
     }
 
 }
 
-function slugify(text) {
-  const from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;"
-  const to = "aaaaaeeeeeiiiiooooouuuunc------"
-
-  const newText = text.split('').map(
-    (letter, i) => letter.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i)))
-
-  return newText
-    .toString()                     // Cast to string
-    .toLowerCase()                  // Convert the string to lowercase letters
-    .trim()                         // Remove whitespace from both sides of a string
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/&/g, '-y-')           // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-');        // Replace multiple - with single -
-}
 
 /* Add a note to the display, and storage */
 function getData(token, uf, municipio, data_inicio, campos_selecionados){
