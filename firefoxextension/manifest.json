@@ -6,25 +6,19 @@
   "icons": {
     "48": "icons/icon-48.png"
   },
-
-  "permissions": [
-  ],
-
+  "permissions": [ ],
   "browser_action": {
     "default_icon": {
-     "32" : "icons/icon-32.png"
+      "32": "icons/icon-32.png"
     },
     "default_title": "DatasusAPI",
     "default_popup": "popup/datasusapi.html"
   },
-
   "browser_specific_settings": {
-  "gecko": {
-    "id": "datasus@saude.gov.br",
-    "strict_min_version": "57.0",
-    "update_url": "https://raw.githubusercontent.com/alexlopespereira/datasusapi/main/firefoxextension/updates.json"
+    "gecko": {
+      "id": "datasus@saude.gov.br",
+      "strict_min_version": "57.0",
+      "update_url": "https://raw.githubusercontent.com/alexlopespereira/datasusapi/main/firefoxextension/updates.json"
+    }
   }
-}
-
-
 }
