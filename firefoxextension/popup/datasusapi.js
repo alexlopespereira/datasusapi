@@ -117,7 +117,7 @@ function getData(token, uf, municipio, data_inicio, campos_selecionados){
         csv.unshift(header.join(','))
         csv = csv.join('\r\n')
         document.getElementById('progressid').style.visibility="hidden";
-        download(csv, `Resultado_${id_uf}_${id_municipio}_${data_inicio}.csv`, 'text/plain');
+        download(csv, `Vacinacao_${uf}_${municipio}_${data_inicio}.csv`, 'text/plain');
         }
     });
     request_url = `https:\/\/servicos-es.hmg.saude.gov.br/e-SUSVE/${index_name}/_search`
