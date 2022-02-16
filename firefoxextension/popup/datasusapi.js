@@ -166,14 +166,14 @@ function searchElasticsearch() {
     var camposLista = getSelectValues(campos);
     var inicioLista = getSelectValues(inicio);
 
-    var tipo_req = document.getElementById('answer').value;
+    var tipo_req = document.querySelector('input[name="optradio"]:checked').value;
 
     if (camposLista.length === 0){
         alert("Selecione pelo menos um campo de dados.")
         return
     }
 
-    if (tipo_req="prod"){
+    if (tipo_req === "prod"){
         HOST_TOKEN = HOST_PROD_TOKEN
         HOST_SEARCH = HOST_PROD_SEARCH
     }
