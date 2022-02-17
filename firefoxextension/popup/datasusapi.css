@@ -21,7 +21,6 @@ body {
   height: inherit;
 }
 
-
 h2 {
   font-size: 1.3rem;
 }
@@ -29,7 +28,6 @@ h2 {
 .download {
   float: right;
 }
-
 
 .container {
     width: 90%;
