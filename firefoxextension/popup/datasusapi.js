@@ -25,6 +25,11 @@ function load_options() {
   }
 }
 
+function getMonday(d) {
+  var diff = d.getDate() - d.getDay()
+  return new Date(d.setDate(diff));
+}
+
 window.addEventListener("load", function(){
   load_options()
 });
@@ -34,6 +39,9 @@ var downloadBtn = document.querySelector('.download');
 /*  add event listeners to buttons */
 
 downloadBtn.addEventListener('click', searchElasticsearch);
+d = new Date()
+var dt = getMonday(new Date());
+document.getElementById('inicioid').value = dt.toISOString().split('T')[0]
 
 /* generic error handler */
 function onError(error) {
@@ -83,7 +91,6 @@ function getIndexName(uf, municipio){
     }
 
 }
-
 
 /* Add a note to the display, and storage */
 function getData(token, uf, municipio, data_inicio, campos_selecionados){
