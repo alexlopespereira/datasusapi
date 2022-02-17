@@ -25,6 +25,10 @@
         {
           "version": "0.7",
           "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.7/datasusapi-0.7-fx.xpi"
+        },
+        {
+          "version": "0.9",
+          "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.7/datasusapi-0.9-fx.xpi"
         }
       ]
     }
