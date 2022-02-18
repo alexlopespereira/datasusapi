@@ -9,6 +9,15 @@ HOST_PROD_TOKEN = "ehr-auth.saude.gov.br"
 HOST_HOM_SEARCH = "servicos-es.hmg.saude.gov.br"
 HOST_PROD_SEARCH = "servicos-es.saude.gov.br"
 
+function selectAllFields()
+{
+    options = document.querySelectorAll("#camposid > option");
+    for ( i=0; i<options.length; i++)
+    {
+        options[i].selected = "true";
+    }
+}
+
 function load_options() {
   var subjectSel = document.getElementById("ufid");
   var topicSel = document.getElementById("municipiosid");
@@ -25,6 +34,7 @@ function load_options() {
   }
 }
 
+
 function getMonday(d) {
   var diff = d.getDate() - d.getDay()
   return new Date(d.setDate(diff));
@@ -32,6 +42,7 @@ function getMonday(d) {
 
 window.addEventListener("load", function(){
   load_options()
+  selectAllFields()
 });
 
 var downloadBtn = document.querySelector('.download');
@@ -161,6 +172,8 @@ function download(content, fileName, contentType) {
     a.download = fileName;
     a.click();
 }
+
+
 
 function searchElasticsearch() {
     var mune = document.getElementById("municipiosid");
