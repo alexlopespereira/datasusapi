@@ -87,8 +87,6 @@ function getIndexName(uf, municipio){
         'Mato Grosso do Sul': 'ms', 'Mato Grosso': 'mt', 'Goiás': 'go', 'Distrito Federal': 'df'
     }
 
-
-
     if(municipio === "Todos"){
         return `imunizacao-covid-${map_uf[uf]}`
     }
@@ -183,6 +181,8 @@ function searchElasticsearch() {
     var camposLista = getSelectValues(campos);
     var inicioLista = getSelectValues(inicio);
 
+    var show_token = document.querySelector('#showtoken').checked;
+
     var tipo_req = document.querySelector('input[name="optradio"]:checked').value;
 
     if (camposLista.length === 0){
@@ -209,6 +209,9 @@ function searchElasticsearch() {
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4) {
             obj = JSON.parse(this.responseText);
+            if (show_token){
+                alert(obj['access_token'])
+            }
             getData(obj['access_token'], strUF, strMun, inicioLista[0], camposLista)
         }
         else {
