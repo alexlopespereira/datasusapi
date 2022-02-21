@@ -110,7 +110,6 @@ function getData(token, uf, municipio, data_inicio, campos_selecionados){
     var data = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}||+7d`}}}]}}};
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
-      alert(this.readyState);
       if(this.readyState === 4) {
         var obj1 = JSON.parse(this.responseText);
         if (obj1["error"] == true){
