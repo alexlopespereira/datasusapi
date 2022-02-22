@@ -108,6 +108,7 @@ function getData(token, uf, municipio, data_inicio, campos_selecionados){
     var data = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}||+7d`}}}]}}};
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
+      alert(this.readyState)
       if(this.readyState === 4) {
         var obj1 = JSON.parse(this.responseText);
         if (obj1["error"] == true){
@@ -218,10 +219,20 @@ function searchElasticsearch() {
             console.log(this.readyState);
         }
     });
-    xhr.onerror = function(event) { // only triggers if the request couldn't be made at all
-        alert("Verifique o certificado e as Decisões de Autenticação salvos no navegador.");
-    };
+//    xhr.onerror = function(event) { // only triggers if the request couldn't be made at all
+//        alert("Verifique o certificado e as Decisões de Autenticação salvos no navegador.");
+//    };
+//    xhr.ontimeout = function (e) {
+//      // Timeout na chamada XMLHttpRequest. Ação de timeout aqui.
+//      alert('e');
+//    };
+
+    xhr.addEventListener('timeout', function() { alert("Verifique o certificado e as Decisões de Autenticação salvos no navegador."); });
+    xhr.addEventListener('error', function() { alert("Verifique o certificado e as Decisões de Autenticação salvos no navegador."); });
+
+
     token_url = `https:\/\/${HOST_TOKEN}/api/token`
     xhr.open("GET", token_url);
+//    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.send();
 }
