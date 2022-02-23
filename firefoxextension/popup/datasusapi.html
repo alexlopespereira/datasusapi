@@ -122,7 +122,9 @@
     <option value="Todos" selected="selected">Todos</option>
 </select>
     <br>
-    Campos: <select name="campos" id="camposid" size="5" multiple>
+    <input type="checkbox" id="enablefields" name="enablefields" checked onclick="enable_fields(this.checked)">
+    <label for="enablefields">Retornar todos os campos</label>
+    Campos: <select name="campos" id="camposid" size="5" disabled multiple>
     <option value='@timestamp'>@timestamp</option>
     <option value='@version'>@version</option>
     <option value='data_importacao_datalake'>data_importacao_datalake</option>
@@ -207,6 +209,16 @@ function check(elem) {
     var radiobtnhom = document.getElementById("hom");
     radiobtnhom.checked = true;
   }
+}
+function enable_fields(en) {
+    if (en === true){
+        document.getElementById('camposid').disabled = true;
+        selectAllFields(true)
+    }
+    else{
+        document.getElementById('camposid').disabled = false;
+        selectAllFields(false)
+    }
 }
 </script>
 <script src="datasusapi.js"></script>
