@@ -3,38 +3,6 @@
     "datasus@saude.gov.br": {
       "updates": [
         {
-          "version": "0.1",
-          "update_link": "https://addons.mozilla.org/firefox/downloads/file/3908569/datasusapi-0.1-fx.xpi"
-        },
-        {
-          "version": "0.2",
-          "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.2/datasusapi-0.2-fx.xpi"
-        },
-        {
-          "version": "0.3",
-          "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.3/datasusapi-0.3-fx.xpi"
-        },
-        {
-          "version": "0.5",
-          "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.5/datasusapi-0.5-fx.xpi"
-        },
-        {
-          "version": "0.6",
-          "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.6/datasusapi-0.6-fx.xpi"
-        },
-        {
-          "version": "0.7",
-          "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.7/datasusapi-0.7-fx.xpi"
-        },
-        {
-          "version": "0.9",
-          "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.9/datasusapi-0.9-fx.xpi"
-        },
-        {
-          "version": "0.10",
-          "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.10/datasusapi-0.10-fx.xpi"
-        },
-        {
           "version": "0.11",
           "update_link": "https://github.com/alexlopespereira/datasusapi/raw/main/firefoxextension/deploy/v0.11/datasusapi-0.11-fx.xpi"
         },
