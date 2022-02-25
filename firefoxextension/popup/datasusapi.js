@@ -172,7 +172,7 @@ function getData(token, uf, municipio, data_inicio, campos_selecionados){
         else if (hits.length === MAXIMUM_RESULTS)
         {
             document.getElementById('progressid').style.visibility="hidden";
-            alert(`Sua pesquisa excedeu o limite de ${MAXIMUM_RESULTS} registros. Utilize outra ferramenta que gera requisições HTTP.`)
+            alert(`Sua pesquisa excedeu o limite de ${MAXIMUM_RESULTS} registros. Utilize outra maneira para acessar a API.`)
             return
         }
         const replacer = (key, value) => value === null ? '' : value
@@ -264,20 +264,11 @@ function searchElasticsearch() {
             console.log(this.readyState);
         }
     });
-//    xhr.onerror = function(event) { // only triggers if the request couldn't be made at all
-//        alert("Verifique o certificado e as Decisões de Autenticação salvos no navegador.");
-//    };
-//    xhr.ontimeout = function (e) {
-//      // Timeout na chamada XMLHttpRequest. Ação de timeout aqui.
-//      alert('e');
-//    };
 
     xhr.addEventListener('timeout', function() { alert("Verifique o certificado e as Decisões de Autenticação salvos no navegador."); });
     xhr.addEventListener('error', function() { alert("Verifique o certificado e as Decisões de Autenticação salvos no navegador."); });
 
-
     token_url = `https:\/\/${HOST_TOKEN}/api/token`
     xhr.open("GET", token_url);
-//    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.send();
 }
