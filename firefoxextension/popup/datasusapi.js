@@ -35,6 +35,32 @@ function load_options() {
   }
 }
 
+function check(elem) {
+
+  if (elem === "prod"){
+    var radiobtnprod = document.getElementById("prod");
+    radiobtnprod.checked = true;
+    var radiobtnhom = document.getElementById("hom");
+    radiobtnhom.checked = false;
+  }
+  else{
+    var radiobtnprod = document.getElementById("prod");
+    radiobtnprod.checked = false;
+    var radiobtnhom = document.getElementById("hom");
+    radiobtnhom.checked = true;
+  }
+}
+
+function enable_fields(en) {
+    if (en === true){
+        document.getElementById('camposid').disabled = true;
+        selectAllFields(true)
+    }
+    else{
+        document.getElementById('camposid').disabled = false;
+        selectAllFields(false)
+    }
+}
 
 function getMonday(d) {
   var diff = d.getDate() - d.getDay()
@@ -55,10 +81,27 @@ d = new Date()
 var dt = getMonday(new Date());
 document.getElementById('inicioid').value = dt.toISOString().split('T')[0]
 
+document.addEventListener('DOMContentLoaded', function() {
+    var homlink = document.getElementById('hom');
+    homlink.addEventListener('click', function() {check("hom")});
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var prodlink = document.getElementById('prod');
+    prodlink.addEventListener('click', function() {check("prod")});
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var fields = document.getElementById('enablefields');
+    fields.addEventListener('click', function() {enable_fields(this.checked)});
+});
+
+
 /* generic error handler */
 function onError(error) {
   console.log(error);
 }
+
 
 function isCapital(text){
   var capitais = ['1100205','1302603','1200401','5002704','1600303','5300108','1400100','5103403','1721000','3550308','2211001','3304557','1501402','5208707','2927408','4205407','2111300','2704302','4314902','4106902','3106200','2304400','2611606','2507507','2800308','2408102','3205309']
@@ -104,7 +147,7 @@ function getData(token, uf, municipio, data_inicio, campos_selecionados){
     var index_name = getIndexName(uf, municipio)
     if (index_name == false)
         return
-    var MAXIMUM_RESULTS = 1000
+    var MAXIMUM_RESULTS = 10000
     var data = {"size": MAXIMUM_RESULTS, "_source": campos_selecionados, "query": {"bool": {"filter": [{"range" : {"vacina_dataAplicacao" : { "gte" : data_inicio, "lt": `${data_inicio}||+7d`}}}]}}};
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
@@ -124,6 +167,12 @@ function getData(token, uf, municipio, data_inicio, campos_selecionados){
         if (hits.length === 0) {
             document.getElementById('progressid').style.visibility="hidden";
             alert("Sua pesquisa não retornou nenhum registro para o período selecionado.")
+            return
+        }
+        else if (hits.length === MAXIMUM_RESULTS)
+        {
+            document.getElementById('progressid').style.visibility="hidden";
+            alert(`Sua pesquisa excedeu o limite de ${MAXIMUM_RESULTS} registros. Utilize outra ferramenta que gera requisições HTTP.`)
             return
         }
         const replacer = (key, value) => value === null ? '' : value

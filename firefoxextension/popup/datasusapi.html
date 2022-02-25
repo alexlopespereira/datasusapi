@@ -195,32 +195,6 @@
     Carregando...
 </div>
 
-<script>
-function check(elem) {
-  if (elem === "prod"){
-    var radiobtnprod = document.getElementById("prod");
-    radiobtnprod.checked = true;
-    var radiobtnhom = document.getElementById("hom");
-    radiobtnhom.checked = false;
-  }
-  else{
-    var radiobtnprod = document.getElementById("prod");
-    radiobtnprod.checked = false;
-    var radiobtnhom = document.getElementById("hom");
-    radiobtnhom.checked = true;
-  }
-}
-function enable_fields(en) {
-    if (en === true){
-        document.getElementById('camposid').disabled = true;
-        selectAllFields(true)
-    }
-    else{
-        document.getElementById('camposid').disabled = false;
-        selectAllFields(false)
-    }
-}
-</script>
 <script src="datasusapi.js"></script>
 
 </body>
